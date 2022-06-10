@@ -6,7 +6,7 @@ import { theme } from "../../themes/theme";
 const GridOportunidades = styled.div`
   margin-top: 15px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(50%, 1fr));
   grid-template-rows: 1fr 1fr;
 `;
 
@@ -21,7 +21,7 @@ const Card = styled.div<HTMLProps<HTMLDivElement> & { disabled?: boolean }>`
   margin: 0.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
 
   img {
@@ -46,7 +46,7 @@ export const Oportunidades = () => {
 
   return (
     <GridOportunidades>
-      <Card onClick={() => changePage("novo-emprestimo")}>
+      <Card onClick={() => changePage("novo-emprestimo/valores")}>
         <img src={require("../../assets/images/newLoan.png")} />
         <h3>Novo empréstimo</h3>
         <p>Até 3.058,10</p>

@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 import CurrencyInput from "react-currency-input-field";
-import { CurrencyInputOnChangeValues } from "react-currency-input-field/dist/components/CurrencyInputProps";
 import styled from "styled-components";
 
 interface Props {
@@ -28,20 +27,13 @@ const OutroValorContainer = styled.div`
     font-weight: bold;
   }
 `;
-type A = {
-  value: string | undefined;
-  name?: string | undefined;
-  values?: CurrencyInputOnChangeValues | undefined;
-};
 
 export const ValorEmprestimoInput = ({ setValor, valor, max, min }: Props) => {
   const handleInput = (value: string | undefined) => {
     if (typeof value === "string") {
-      if (parseFloat(value) > max) return setValor(max);
-      if (parseFloat(value) < min) return setValor(min);
-      setValor(parseFloat(value));
+      if (parseInt(value) > max) return setValor(max);
+      setValor(parseInt(value));
     }
-
     if (typeof value === "undefined") setValor(undefined);
   };
 

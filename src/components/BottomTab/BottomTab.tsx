@@ -1,6 +1,6 @@
 import { HTMLProps, ReactNode } from "react";
 import { FileText, HelpCircle, Home, User } from "react-feather";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../themes/theme";
 
@@ -15,9 +15,9 @@ const Container = styled.div`
   background-color: ${theme.lightColor};
 `;
 
-const NavOption = styled.button<
-  HTMLProps<HTMLButtonElement> & { active: boolean }
->`
+const NavOption = styled.div<HTMLProps<HTMLDivElement> & { active: boolean }>`
+  all: unset;
+  cursor: pointer;
   display: flex;
   font-size: 0.85rem;
   flex-direction: column;
@@ -41,13 +41,10 @@ const ROUTES: RoutesType[] = [
 ];
 
 export const BottomTab = () => {
-  const navigate = useNavigate();
   const location = useLocation();
 
   const isRouteActive = (routeName: string): boolean =>
     location.pathname.split("/")[1] === routeName;
-
-  const changePage = (routeName: string) => navigate(`/${routeName}`);
 
   return (
     <Container>
@@ -55,14 +52,12 @@ export const BottomTab = () => {
         const isActive = isRouteActive(name);
 
         return (
-          <NavOption
-            key={name}
-            active={isActive}
-            onClick={() => changePage(name)}
-          >
-            <span>{icon}</span>
-            {label}
-          </NavOption>
+          <Link key={name} to={"/" + name} style={{ textDecoration: "none" }}>
+            <NavOption active={isActive}>
+              <span>{icon}</span>
+              <span>{label}</span>
+            </NavOption>
+          </Link>
         );
       })}
     </Container>

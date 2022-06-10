@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -33,6 +34,11 @@ h5 {
 
 button {
   all: unset;
+}
+
+a,
+button {
+  cursor: pointer;
 }
 
 code {

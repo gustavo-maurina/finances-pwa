@@ -9,11 +9,11 @@ import {
 
 interface NovoEmprestimoValues {
   valorEmprestimo: number | undefined;
-  prazoEmMeses: number | undefined;
-  banco: number | undefined;
+  periodoEmprestimo: number | undefined;
+  bancoEmprestimo: number | undefined;
   setValorEmprestimo: Dispatch<SetStateAction<number | undefined>>;
-  setPrazoEmMeses: Dispatch<SetStateAction<number | undefined>>;
-  setBanco: Dispatch<SetStateAction<number | undefined>>;
+  setPeriodoEmprestimo: Dispatch<SetStateAction<number | undefined>>;
+  setBancoEmprestimo: Dispatch<SetStateAction<number | undefined>>;
 }
 
 const NovoEmprestimoContext = createContext<NovoEmprestimoValues>(
@@ -26,17 +26,17 @@ export const NovoEmprestimoProvider = ({
   children: ReactNode;
 }) => {
   const [valorEmprestimo, setValorEmprestimo] = useState<number>();
-  const [prazoEmMeses, setPrazoEmMeses] = useState<number>();
-  const [banco, setBanco] = useState<number>();
+  const [periodoEmprestimo, setPeriodoEmprestimo] = useState<number>();
+  const [bancoEmprestimo, setBancoEmprestimo] = useState<number>();
 
   return (
     <NovoEmprestimoContext.Provider
       value={{
         valorEmprestimo,
-        prazoEmMeses,
-        banco,
-        setBanco,
-        setPrazoEmMeses,
+        periodoEmprestimo,
+        bancoEmprestimo,
+        setPeriodoEmprestimo,
+        setBancoEmprestimo,
         setValorEmprestimo,
       }}
     >

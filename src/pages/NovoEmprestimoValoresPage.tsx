@@ -1,8 +1,8 @@
 import { withAppBar } from "../components/HOCs/withAppBar";
-import { ValoresEmprestimo } from "../components/Home/ValoresEmprestimo";
+import { ValoresEmprestimo } from "../components/Home/NovoEmprestimo/ValoresEmprestimo";
 import { NovoEmprestimoProvider } from "../contexts/NovoEmprestimoProvider";
 
-const NovoEmprestimoPageComponent = () => {
+const NovoEmprestimoValoresPageComponent = () => {
   return (
     <NovoEmprestimoProvider>
       <h3>De quanto você precisa?</h3>
@@ -11,7 +11,7 @@ const NovoEmprestimoPageComponent = () => {
   );
 };
 
-export const NovoEmprestimoPage = withAppBar(
-  NovoEmprestimoPageComponent,
+export const NovoEmprestimoValoresPage = withAppBar(
+  NovoEmprestimoValoresPageComponent,
   "Valores"
 );
