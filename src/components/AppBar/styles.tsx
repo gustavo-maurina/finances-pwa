@@ -2,7 +2,7 @@ import { ChevronLeft } from "react-feather";
 import styled from "styled-components";
 import { APP_BAR_HEIGHT } from "../../constants/appBarHeight";
 
-export const AppBarContainer = styled.div`
+export const AppBarContainer = styled.header`
   position: fixed;
   top: 0;
   width: 100vw;

@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../themes/theme";
 
-const Container = styled.div`
+const Container = styled.nav`
   display: flex;
   justify-content: space-around;
   position: fixed;

@@ -11,7 +11,6 @@ const convertStringToObject = (str: string) => {
     if (!property.length) return;
 
     const [key, value] = property.split(":");
-    console.log({ key, value, property });
     obj[key.replaceAll('"', "").trim()] = parseFloat(value.trim());
   });
 

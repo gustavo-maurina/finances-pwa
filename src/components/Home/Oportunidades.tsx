@@ -1,4 +1,5 @@
 import { HTMLProps } from "react";
+import Skeleton from "react-loading-skeleton";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -38,6 +39,7 @@ const Card = styled.div<HTMLProps<HTMLDivElement> & { disabled?: boolean }>`
   }
 
   p {
+    width: 100%;
     color: ${theme.accentPink};
   }
 `;
@@ -50,12 +52,8 @@ export const Oportunidades = () => {
   );
   const changePage = (page: string) => navigate(page);
 
-  if (isLoading) return <div>Carregando...</div>;
-
   if (isError || data === undefined)
     return <div>Erro ao carregar informação</div>;
-
-  console.log(data);
 
   return (
     <GridOportunidades>
@@ -66,14 +64,15 @@ export const Oportunidades = () => {
         >
           <img src={require("../../assets/images/newLoan.png")} alt="" />
           <h3>Novo empréstimo</h3>
-          <p>Até R$ {data?.newLoanMaxValue}</p>
+
+          <p>{data ? "Até R$ " + data?.newLoanMaxValue : <Skeleton />}</p>
         </Card>
       }
 
       <Card disabled={!data?.portabilityMaxValue}>
         <img src={require("../../assets/images/portability.png")} alt="" />
         <h3>Portabilidade</h3>
-        <p>Até {data?.portabilityMaxValue}</p>
+        <p>{data ? "Até R$ " + data?.portabilityMaxValue : <Skeleton />}</p>
       </Card>
 
       <Card disabled={!data?.refinMaxValue}>
