@@ -1,7 +1,9 @@
 import { HTMLProps } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CARD_SHADOW } from "../../constants/cardShadow";
+import { getOportunidades } from "../../services/getOportunidades";
 import { theme } from "../../themes/theme";
 
 const GridOportunidades = styled.div`
@@ -42,32 +44,46 @@ const Card = styled.div<HTMLProps<HTMLDivElement> & { disabled?: boolean }>`
 
 export const Oportunidades = () => {
   const navigate = useNavigate();
-
+  const { data, isLoading, isError } = useQuery(
+    "oportunidades",
+    getOportunidades
+  );
   const changePage = (page: string) => navigate(page);
 
+  if (isLoading) return <div>Carregando...</div>;
+  if (isError || data === undefined)
+    return <div>Erro ao carregar informação</div>;
+
   return (
-    <GridOportunidades>
-      <Card onClick={() => changePage("novo-emprestimo/valores")}>
-        <img src={require("../../assets/images/newLoan.png")} />
-        <h3>Novo empréstimo</h3>
-        <p>Até 3.058,10</p>
-      </Card>
+    <></>
+    // <GridOportunidades>
+    //   {data}
+    //   {
+    //     <Card
+    //       disabled={!data?.newLoanMaxValue}
+    //       onClick={() => changePage("novo-emprestimo/valores")}
+    //     >
+    //       <img src={require("../../assets/images/newLoan.png")} />
+    //       <h3>Novo empréstimo</h3>
+    //       <p>Até </p>
+    //     </Card>
+    //   }
 
-      <Card>
-        <img src={require("../../assets/images/portability.png")} />
-        <h3>Portabilidade</h3>
-        <p>Até 2.000,00</p>
-      </Card>
+    //   <Card disabled={!data?.portabilityMaxValue}>
+    //     <img src={require("../../assets/images/portability.png")} />
+    //     <h3>Portabilidade</h3>
+    //     <p>Até 2.000,00</p>
+    //   </Card>
 
-      <Card disabled>
-        <img src={require("../../assets/images/refinancing.png")} />
-        <h3>Refinanciamento</h3>
-      </Card>
+    //   <Card disabled={!data?.refinMaxValue}>
+    //     <img src={require("../../assets/images/refinancing.png")} />
+    //     <h3>Refinanciamento</h3>
+    //   </Card>
 
-      <Card disabled>
-        <img src={require("../../assets/images/creditCard.png")} />
-        <h3>Cartão de crédito consignado</h3>
-      </Card>
-    </GridOportunidades>
+    //   <Card disabled={!data?.creditCardMaxValue}>
+    //     <img src={require("../../assets/images/creditCard.png")} />
+    //     <h3>Cartão de crédito consignado</h3>
+    //   </Card>
+    // </GridOportunidades>
   );
 };

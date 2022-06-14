@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 import { CARD_SHADOW } from "../../../constants/cardShadow";
 import { theme } from "../../../themes/theme";
+import { LoanSimulation } from "../../../types/LoanSimulation";
+import { getSimulationPaymentDate } from "../../../utils/getSimulationPaymentDate";
 import { Separator } from "../../shared/Separator";
 
 const CardBanco = styled.div`
@@ -113,7 +115,11 @@ const BottomSection = styled.div`
   }
 `;
 
-export const CardBancoEmprestimo = () => {
+export const CardBancoEmprestimo = ({
+  simulation,
+}: {
+  simulation: LoanSimulation;
+}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -131,15 +137,15 @@ export const CardBancoEmprestimo = () => {
               <img src={require("../../../assets/images/t_logo.png")} alt="" />
             </div>
             <div>
-              <p>60 parcelas de</p>
-              <p>R$ 372,64</p>
-              <p>Total de R$ 5.000,00</p>
+              <p>{simulation.numberOfInstallments} parcelas de</p>
+              <p>R$ {simulation.installmentValue}</p>
+              <p>Total de R$ {simulation.contractValue}</p>
             </div>
           </LeftHalf>
 
           <RightHalf>
             <p>com taxa de</p>
-            <p>1,30% a.m.</p>
+            <p>{simulation.rate * 100}% a.m.</p>
           </RightHalf>
         </TopSection>
 
@@ -151,7 +157,7 @@ export const CardBancoEmprestimo = () => {
               Previsão de pagamento
               <HelpCircle color={theme.accentPink} size={18} />
             </p>
-            <p>19 de maio a 01 de junho de 2020</p>
+            <p>{getSimulationPaymentDate(simulation)}</p>
           </div>
 
           <div>

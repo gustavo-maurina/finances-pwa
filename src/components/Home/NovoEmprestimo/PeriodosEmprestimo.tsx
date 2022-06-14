@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { toast } from "react-toastify";
 import { useNovoEmprestimo } from "../../../contexts/NovoEmprestimoProvider";
+import { getLoanInstallments } from "../../../services/getLoanInstallments";
+import { MesesEmprestimoInput } from "./MesesEmprestimoInput";
 import {
   ContinueButton,
   EmprestimoOptionsContainer,
@@ -9,56 +12,63 @@ import {
   OptionsGrid,
 } from "./styles";
 
-const MesesInput = styled.div`
-  input {
-    all: unset;
-    font-size: 18px;
-    border-bottom: 1px solid #00000064;
-    text-align: center;
-    width: 5rem;
-  }
-
-  label {
-    margin-left: 1rem;
-    font-weight: bold;
-  }
-`;
-
 export const PeriodosEmprestimo = () => {
   const { setPeriodoEmprestimo } = useNovoEmprestimo();
   const navigate = useNavigate();
   const [periodo, setPeriodo] = useState<number>();
+  const { data, isLoading, isError } = useQuery(
+    "periodosEmprestimo",
+    getLoanInstallments
+  );
 
-  const data = {
-    min: 500,
-    max: 3000,
+  const handlePeriodoSelected = (periodo: number) => setPeriodo(periodo);
+
+  const isValorValid = () => {
+    if (
+      periodo === undefined ||
+      periodo > (data?.max as number) ||
+      periodo < (data?.min as number)
+    )
+      return false;
+
+    return true;
   };
 
-  const handleperiodoSelected = (periodo: number) => setPeriodo(periodo);
-
   const handleContinue = () => {
+    if (!isValorValid())
+      return toast.error(
+        `Valor inválido. Por favor, insira um valor entre R$ ${data?.min} e R$ ${data?.max}`
+      );
+
     setPeriodoEmprestimo(periodo);
     navigate("/inicio/novo-emprestimo/banco");
   };
 
+  if (isLoading) return <div>Carregando...</div>;
+
+  if (isError || data === undefined)
+    return <div>Oops, encontramos um erro no servidor!</div>;
+
   return (
     <EmprestimoOptionsContainer>
       <OptionsGrid>
-        <OptionCard
-          active={periodo === 3}
-          onClick={() => handleperiodoSelected(3)}
-        >
-          48 meses
-        </OptionCard>
-        <OptionCard>60 meses</OptionCard>
-        <OptionCard>72 meses</OptionCard>
-        <OptionCard>84 meses</OptionCard>
+        {data.suggestionInstallments.map((suggestedValue) => (
+          <OptionCard
+            key={suggestedValue}
+            active={periodo === suggestedValue}
+            onClick={() => handlePeriodoSelected(suggestedValue)}
+          >
+            {suggestedValue} meses
+          </OptionCard>
+        ))}
       </OptionsGrid>
 
-      <MesesInput>
-        <input id="meses-input" type={"number"} />
-        <label htmlFor="meses-input">meses</label>
-      </MesesInput>
+      <MesesEmprestimoInput
+        periodo={periodo}
+        setPeriodo={setPeriodo}
+        max={data?.max || 1_000_000}
+        min={data?.min || 0}
+      />
 
       <ContinueButton onClick={handleContinue}>Continuar</ContinueButton>
     </EmprestimoOptionsContainer>

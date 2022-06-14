@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNovoEmprestimo } from "../../../contexts/NovoEmprestimoProvider";
+import { getLoanValues } from "../../../services/getLoanValues";
 import {
   ContinueButton,
   EmprestimoOptionsContainer,
@@ -15,22 +17,17 @@ export const ValoresEmprestimo = () => {
   const { setValorEmprestimo } = useNovoEmprestimo();
   const navigate = useNavigate();
   const [valor, setValor] = useState<number>();
-  // const { data, isLoading, isError } = useQuery(
-  //   "valoresEmprestimo",
-  //   getLoanValues
-  // );
-
-  const data = {
-    min: 500,
-    max: 3000,
-  };
-
-  // if (isLoading) return <div>Carregando...</div>;
-  // if (isError || data === undefined)
-  //   return <div>Oops, encontramos um erro no servidor!</div>;
+  const { data, isLoading, isError } = useQuery(
+    "valoresEmprestimo",
+    getLoanValues
+  );
 
   const isValorValid = () => {
-    if (valor === undefined || valor > data?.max || valor < data?.min)
+    if (
+      valor === undefined ||
+      valor > (data?.max as number) ||
+      valor < (data?.min as number)
+    )
       return false;
 
     return true;
@@ -41,22 +38,30 @@ export const ValoresEmprestimo = () => {
   const handleContinue = () => {
     if (!isValorValid())
       return toast.error(
-        "Valor inválido. Por favor, insira um valor entre R$ 500 e R$ 3000."
+        `Valor inválido. Por favor, insira um valor entre R$ ${data?.min} e R$ ${data?.max}`
       );
 
     setValorEmprestimo(valor);
     navigate("/inicio/novo-emprestimo/periodo");
   };
 
+  if (isLoading) return <div>Carregando...</div>;
+
+  if (isError || data === undefined)
+    return <div>Oops, encontramos um erro no servidor!</div>;
+
   return (
     <EmprestimoOptionsContainer>
       <OptionsGrid>
-        <OptionCard active={valor === 3} onClick={() => handleValorSelected(3)}>
-          1
-        </OptionCard>
-        <OptionCard>1</OptionCard>
-        <OptionCard>1</OptionCard>
-        <OptionCard>1</OptionCard>
+        {data.suggestionValues.map((value) => (
+          <OptionCard
+            key={value}
+            active={valor === value}
+            onClick={() => handleValorSelected(value)}
+          >
+            R$ {value}
+          </OptionCard>
+        ))}
       </OptionsGrid>
 
       <ValorEmprestimoInput
