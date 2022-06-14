@@ -3,6 +3,7 @@ import { ContaPage } from "../pages/ContaPage";
 import { ContratosPage } from "../pages/ContratosPage";
 import { DuvidasPage } from "../pages/DuvidasPage";
 import { HomePage } from "../pages/HomePage";
+import { NovoEmprestimoBancoPage } from "../pages/NovoEmprestimoBancoPage";
 import { NovoEmprestimoPeriodoPage } from "../pages/NovoEmprestimoPeriodoPage";
 import { NovoEmprestimoValoresPage } from "../pages/NovoEmprestimoValoresPage";
 
@@ -19,6 +20,10 @@ function AppRoutes() {
       <Route
         path="/inicio/novo-emprestimo/periodo"
         element={<NovoEmprestimoPeriodoPage />}
+      />
+      <Route
+        path="/inicio/novo-emprestimo/banco"
+        element={<NovoEmprestimoBancoPage />}
       />
 
       {/* CONTRATOS */}

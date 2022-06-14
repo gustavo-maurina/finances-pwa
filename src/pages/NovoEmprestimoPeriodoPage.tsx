@@ -1,12 +1,12 @@
 import { withAppBar } from "../components/HOCs/withAppBar";
-import { ValoresEmprestimo } from "../components/Home/NovoEmprestimo/ValoresEmprestimo";
+import { PeriodosEmprestimo } from "../components/Home/NovoEmprestimo/PeriodosEmprestimo";
 import { NovoEmprestimoProvider } from "../contexts/NovoEmprestimoProvider";
 
 const NovoEmprestimoPeriodoPageComponent = () => {
   return (
     <NovoEmprestimoProvider>
       <h3>Em quanto tempo você quer pagar?</h3>
-      <ValoresEmprestimo />
+      <PeriodosEmprestimo />
     </NovoEmprestimoProvider>
   );
 };

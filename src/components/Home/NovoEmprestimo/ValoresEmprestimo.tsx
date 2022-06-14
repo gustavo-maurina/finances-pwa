@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useNovoEmprestimo } from "../../../contexts/NovoEmprestimoProvider";
 import {
   ContinueButton,
@@ -39,7 +40,7 @@ export const ValoresEmprestimo = () => {
 
   const handleContinue = () => {
     if (!isValorValid())
-      return alert(
+      return toast.error(
         "Valor inválido. Por favor, insira um valor entre R$ 500 e R$ 3000."
       );
 

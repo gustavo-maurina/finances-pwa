@@ -1,6 +1,7 @@
 import { HTMLProps } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { CARD_SHADOW } from "../../constants/cardShadow";
 import { theme } from "../../themes/theme";
 
 const GridOportunidades = styled.div`
@@ -16,7 +17,7 @@ const Card = styled.div<HTMLProps<HTMLDivElement> & { disabled?: boolean }>`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   background-color: #fff;
   border-radius: 1rem;
-  box-shadow: 0 2px 9px -1px rgba(0, 0, 0, 0.088);
+  box-shadow: ${CARD_SHADOW};
   padding: 1rem;
   margin: 0.5rem;
   display: flex;

@@ -1,13 +1,28 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { useNovoEmprestimo } from "../../../contexts/NovoEmprestimoProvider";
 import {
   ContinueButton,
   EmprestimoOptionsContainer,
   OptionCard,
   OptionsGrid,
-  SimularText,
 } from "./styles";
+
+const MesesInput = styled.div`
+  input {
+    all: unset;
+    font-size: 18px;
+    border-bottom: 1px solid #00000064;
+    text-align: center;
+    width: 5rem;
+  }
+
+  label {
+    margin-left: 1rem;
+    font-weight: bold;
+  }
+`;
 
 export const PeriodosEmprestimo = () => {
   const { setPeriodoEmprestimo } = useNovoEmprestimo();
@@ -19,23 +34,11 @@ export const PeriodosEmprestimo = () => {
     max: 3000,
   };
 
-  const isPeriodoValid = () => {
-    if (periodo === undefined || periodo > data?.max || periodo < data?.min)
-      return false;
-
-    return true;
-  };
-
   const handleperiodoSelected = (periodo: number) => setPeriodo(periodo);
 
   const handleContinue = () => {
-    if (!isPeriodoValid())
-      return alert(
-        "periodo inválido. Por favor, insira um periodo entre R$ 500 e R$ 3000."
-      );
-
     setPeriodoEmprestimo(periodo);
-    navigate("/inicio/novo-emprestimo/periodo");
+    navigate("/inicio/novo-emprestimo/banco");
   };
 
   return (
@@ -45,15 +48,19 @@ export const PeriodosEmprestimo = () => {
           active={periodo === 3}
           onClick={() => handleperiodoSelected(3)}
         >
-          1
+          48 meses
         </OptionCard>
-        <OptionCard>1</OptionCard>
-        <OptionCard>1</OptionCard>
-        <OptionCard>1</OptionCard>
+        <OptionCard>60 meses</OptionCard>
+        <OptionCard>72 meses</OptionCard>
+        <OptionCard>84 meses</OptionCard>
       </OptionsGrid>
 
+      <MesesInput>
+        <input id="meses-input" type={"number"} />
+        <label htmlFor="meses-input">meses</label>
+      </MesesInput>
+
       <ContinueButton onClick={handleContinue}>Continuar</ContinueButton>
-      <SimularText>Simule pela parcela</SimularText>
     </EmprestimoOptionsContainer>
   );
 };
