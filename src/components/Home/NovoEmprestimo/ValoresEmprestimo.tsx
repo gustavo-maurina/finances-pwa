@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNovoEmprestimo } from "../../../contexts/NovoEmprestimoProvider";
 import { getLoanValues } from "../../../services/getLoanValues";
+import { GenericServerError } from "../../shared/GenericServerError";
+import { EmprestimoOptionsSkeleton } from "./EmprestimoOptionsSkeleton";
 import {
   ContinueButton,
   EmprestimoOptionsContainer,
@@ -45,10 +47,9 @@ export const ValoresEmprestimo = () => {
     navigate("/inicio/novo-emprestimo/periodo");
   };
 
-  if (isLoading) return <div>Carregando...</div>;
+  if (isLoading) return <EmprestimoOptionsSkeleton />;
 
-  if (isError || data === undefined)
-    return <div>Oops, encontramos um erro no servidor!</div>;
+  if (isError || data === undefined) return <GenericServerError />;
 
   return (
     <EmprestimoOptionsContainer>

@@ -11,7 +11,9 @@ const NovoEmprestimoValoresPageComponent = () => {
   );
 };
 
-export const NovoEmprestimoValoresPage = withAppBar(
+const NovoEmprestimoValoresPage = withAppBar(
   NovoEmprestimoValoresPageComponent,
   "Valores"
 );
+
+export default NovoEmprestimoValoresPage;

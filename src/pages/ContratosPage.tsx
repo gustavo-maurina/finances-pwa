@@ -8,4 +8,6 @@ const ContratosPageComponent = () => {
   );
 };
 
-export const ContratosPage = withAppBar(ContratosPageComponent, "Contratos");
+const ContratosPage = withAppBar(ContratosPageComponent, "Contratos");
+
+export default ContratosPage;

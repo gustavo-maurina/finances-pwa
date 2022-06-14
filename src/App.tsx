@@ -1,8 +1,12 @@
+import { Suspense } from "react";
+import { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer, ToastContainerProps } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BottomTab } from "./components/BottomTab/BottomTab";
+import { CircleLoader } from "./components/shared/CircleLoader";
 import AppRoutes from "./routes";
 
 const queryClient = new QueryClient();
@@ -22,10 +26,16 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <AppRoutes />
+          <Suspense fallback={<CircleLoader />}>
+            <SkeletonTheme baseColor="#d3d3d3" highlightColor="#e3e3e3">
+              <AppRoutes />
+            </SkeletonTheme>
+          </Suspense>
+
           <BottomTab />
         </BrowserRouter>
       </QueryClientProvider>
+
       <ToastContainer
         theme="colored"
         position="bottom-center"

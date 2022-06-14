@@ -8,7 +8,7 @@ const Content = styled.div`
   margin-top: 190px;
 `;
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
     <>
       <AppBar render={<HomeAppBar />} />
@@ -23,3 +23,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;

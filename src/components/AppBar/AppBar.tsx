@@ -25,7 +25,9 @@ export const AppBar = ({ title, render }: Props) => {
   return isDefaultDisplay ? (
     <AppBarContainer>
       <DefaultAppBarGrid>
-        <AppBarGoBackIcon onClick={goBack} />
+        <button onClick={goBack}>
+          <AppBarGoBackIcon />
+        </button>
         <AppBarMiddleDiv>{title}</AppBarMiddleDiv>
         <div></div>
       </DefaultAppBarGrid>

@@ -1,39 +1,47 @@
+import { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { ContaPage } from "../pages/ContaPage";
-import { ContratosPage } from "../pages/ContratosPage";
-import { DuvidasPage } from "../pages/DuvidasPage";
-import { HomePage } from "../pages/HomePage";
-import { NovoEmprestimoBancoPage } from "../pages/NovoEmprestimoBancoPage";
-import { NovoEmprestimoPeriodoPage } from "../pages/NovoEmprestimoPeriodoPage";
-import { NovoEmprestimoValoresPage } from "../pages/NovoEmprestimoValoresPage";
+
+const Home = lazy(() => import("../pages/HomePage"));
+const NovoEmprestimoValores = lazy(
+  () => import("../pages/NovoEmprestimoValoresPage")
+);
+const NovoEmprestimoPeriodos = lazy(
+  () => import("../pages/NovoEmprestimoPeriodoPage")
+);
+const NovoEmprestimoBanco = lazy(
+  () => import("../pages/NovoEmprestimoBancoPage")
+);
+const Contratos = lazy(() => import("../pages/ContratosPage"));
+const Duvidas = lazy(() => import("../pages/DuvidasPage"));
+const Conta = lazy(() => import("../pages/ContaPage"));
 
 function AppRoutes() {
   return (
     <Routes>
       {/* INICIO */}
       <Route path="/" element={<Navigate to="/inicio" replace />} />
-      <Route path="/inicio" element={<HomePage />} />
+      <Route path="/inicio" element={<Home />} />
       <Route
         path="/inicio/novo-emprestimo/valores"
-        element={<NovoEmprestimoValoresPage />}
+        element={<NovoEmprestimoValores />}
       />
       <Route
         path="/inicio/novo-emprestimo/periodo"
-        element={<NovoEmprestimoPeriodoPage />}
+        element={<NovoEmprestimoPeriodos />}
       />
       <Route
         path="/inicio/novo-emprestimo/banco"
-        element={<NovoEmprestimoBancoPage />}
+        element={<NovoEmprestimoBanco />}
       />
 
       {/* CONTRATOS */}
-      <Route path="/contratos" element={<ContratosPage />} />
+      <Route path="/contratos" element={<Contratos />} />
 
       {/* DUVIDAS */}
-      <Route path="/duvidas" element={<DuvidasPage />} />
+      <Route path="/duvidas" element={<Duvidas />} />
 
       {/* CONTA */}
-      <Route path="/conta" element={<ContaPage />} />
+      <Route path="/conta" element={<Conta />} />
     </Routes>
   );
 }

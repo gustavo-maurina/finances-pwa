@@ -8,4 +8,6 @@ const ContaPageComponent = () => {
   );
 };
 
-export const ContaPage = withAppBar(ContaPageComponent, "Conta");
+const ContaPage = withAppBar(ContaPageComponent, "Conta");
+
+export default ContaPage;

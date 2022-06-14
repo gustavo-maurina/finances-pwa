@@ -8,4 +8,6 @@ const DuvidasPageComponent = () => {
   );
 };
 
-export const DuvidasPage = withAppBar(DuvidasPageComponent, "Dúvidas");
+const DuvidasPage = withAppBar(DuvidasPageComponent, "Dúvidas");
+
+export default DuvidasPage;

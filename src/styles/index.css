@@ -1,3 +1,5 @@
+@import "./overrides.css";
+
 *,
 *::before,
 *::after {

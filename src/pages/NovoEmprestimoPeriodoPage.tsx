@@ -11,7 +11,9 @@ const NovoEmprestimoPeriodoPageComponent = () => {
   );
 };
 
-export const NovoEmprestimoPeriodoPage = withAppBar(
+const NovoEmprestimoPeriodoPage = withAppBar(
   NovoEmprestimoPeriodoPageComponent,
   "Período"
 );
+
+export default NovoEmprestimoPeriodoPage;

@@ -64,25 +64,25 @@ export const Oportunidades = () => {
           disabled={!data?.newLoanMaxValue}
           onClick={() => changePage("novo-emprestimo/valores")}
         >
-          <img src={require("../../assets/images/newLoan.png")} />
+          <img src={require("../../assets/images/newLoan.png")} alt="" />
           <h3>Novo empréstimo</h3>
           <p>Até R$ {data?.newLoanMaxValue}</p>
         </Card>
       }
 
       <Card disabled={!data?.portabilityMaxValue}>
-        <img src={require("../../assets/images/portability.png")} />
+        <img src={require("../../assets/images/portability.png")} alt="" />
         <h3>Portabilidade</h3>
         <p>Até {data?.portabilityMaxValue}</p>
       </Card>
 
       <Card disabled={!data?.refinMaxValue}>
-        <img src={require("../../assets/images/refinancing.png")} />
+        <img src={require("../../assets/images/refinancing.png")} alt="" />
         <h3>Refinanciamento</h3>
       </Card>
 
       <Card disabled={!data?.creditCardMaxValue}>
-        <img src={require("../../assets/images/creditCard.png")} />
+        <img src={require("../../assets/images/creditCard.png")} alt="" />
         <h3>Cartão de crédito consignado</h3>
       </Card>
     </GridOportunidades>

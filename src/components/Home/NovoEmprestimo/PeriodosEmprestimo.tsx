@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNovoEmprestimo } from "../../../contexts/NovoEmprestimoProvider";
 import { getLoanInstallments } from "../../../services/getLoanInstallments";
+import { GenericServerError } from "../../shared/GenericServerError";
+import { EmprestimoOptionsSkeleton } from "./EmprestimoOptionsSkeleton";
 import { MesesEmprestimoInput } from "./MesesEmprestimoInput";
 import {
   ContinueButton,
@@ -44,15 +46,14 @@ export const PeriodosEmprestimo = () => {
     navigate("/inicio/novo-emprestimo/banco");
   };
 
-  if (isLoading) return <div>Carregando...</div>;
+  if (isLoading) return <EmprestimoOptionsSkeleton />;
 
-  if (isError || data === undefined)
-    return <div>Oops, encontramos um erro no servidor!</div>;
+  if (isError || data === undefined) return <GenericServerError />;
 
   return (
     <EmprestimoOptionsContainer>
       <OptionsGrid>
-        {data.suggestionInstallments.map((suggestedValue) => (
+        {data?.suggestionInstallments.map((suggestedValue) => (
           <OptionCard
             key={suggestedValue}
             active={periodo === suggestedValue}

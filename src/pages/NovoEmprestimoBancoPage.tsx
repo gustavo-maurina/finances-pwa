@@ -11,7 +11,8 @@ const NovoEmprestimoBancoPageComponent = () => {
   );
 };
 
-export const NovoEmprestimoBancoPage = withAppBar(
+const NovoEmprestimoBancoPage = withAppBar(
   NovoEmprestimoBancoPageComponent,
   "Opções"
 );
+export default NovoEmprestimoBancoPage;
