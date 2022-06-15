@@ -10,8 +10,8 @@ const Container = styled.nav`
   position: fixed;
   bottom: 0;
   width: 100vw;
-  height: 70px;
-  padding: 15px 30px;
+  height: 5.2rem;
+  padding: 1rem 2rem;
   background-color: ${theme.lightColor};
 `;
 

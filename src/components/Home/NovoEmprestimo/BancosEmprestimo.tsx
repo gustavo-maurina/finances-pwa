@@ -5,7 +5,8 @@ import { getLoanSimulation } from "../../../services/getLoanSimulation";
 import { GenericServerError } from "../../shared/GenericServerError";
 import { CardBancoEmprestimo } from "./CardBancoEmprestimo";
 
-const Container = styled.div`
+const Container = styled.button`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
