@@ -18,7 +18,7 @@ Para ver a aplicação rodando em modo de desenvolvimento, acesse: `http://local
 
 ## Testar PWA
 
-Para buildar e testar funcionalidade do PWA, rodar:
+Para buildar e testar funcionalidade do PWA com melhor desempenho, gerar build com:
 
 ```bash
 npm run build
@@ -32,7 +32,7 @@ serve -s build
 
 Abrir o navegador e acessar a URL: `http://localhost:3000`
 
-obs: `serve` é um comando global, para instalar o pacote, execute:
+obs: `serve` é um comando global, para instalar o pacote, executar:
 
 ```bash
 yarn global add serve
