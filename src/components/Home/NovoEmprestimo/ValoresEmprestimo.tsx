@@ -69,7 +69,6 @@ export const ValoresEmprestimo = () => {
         valor={valor}
         setValor={setValor}
         max={data?.max || 1_000_000}
-        min={data?.min || 0}
       />
 
       <ContinueButton onClick={handleContinue}>Continuar</ContinueButton>

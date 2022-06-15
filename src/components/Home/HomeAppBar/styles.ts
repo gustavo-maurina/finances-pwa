@@ -44,6 +44,7 @@ export const MiddleDiv = styled.div`
 
 export const Logo = styled.img.attrs({
   src: require("../../../assets/images/tudo-logo.png"),
+  alt: "logo",
 })`
   width: 70px;
 `;

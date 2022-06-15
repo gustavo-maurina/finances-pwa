@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 interface Props {
   max: number;
-  min: number;
   setValor: Dispatch<SetStateAction<number | undefined>>;
   valor: number | undefined;
 }
@@ -28,7 +27,7 @@ const OutroValorContainer = styled.div`
   }
 `;
 
-export const ValorEmprestimoInput = ({ setValor, valor, max, min }: Props) => {
+export const ValorEmprestimoInput = ({ setValor, valor, max }: Props) => {
   const handleInput = (value: string | undefined) => {
     if (typeof value === "string") {
       if (parseInt(value) > max) return setValor(max);

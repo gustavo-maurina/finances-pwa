@@ -16,7 +16,7 @@ const GridOportunidades = styled.div`
 
 // create card with styled components
 const Card = styled.div<HTMLProps<HTMLDivElement> & { disabled?: boolean }>`
-  opacity: ${(props) => (props.disabled ? 0.3 : 1)};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   background-color: #fff;
   border-radius: 1rem;
@@ -46,10 +46,7 @@ const Card = styled.div<HTMLProps<HTMLDivElement> & { disabled?: boolean }>`
 
 export const Oportunidades = () => {
   const navigate = useNavigate();
-  const { data, isLoading, isError } = useQuery(
-    "oportunidades",
-    getOportunidades
-  );
+  const { data, isError } = useQuery("oportunidades", getOportunidades);
   const changePage = (page: string) => navigate(page);
 
   if (isError || data === undefined)
