@@ -47,10 +47,13 @@ const Card = styled.div<HTMLProps<HTMLDivElement> & { disabled?: boolean }>`
 
 export const Oportunidades = () => {
   const navigate = useNavigate();
-  const { data, isError } = useQuery("oportunidades", getOportunidades);
+  const { data, isError, isFetched } = useQuery(
+    "oportunidades",
+    getOportunidades
+  );
   const changePage = (page: string) => navigate(page);
 
-  if (isError || data === undefined)
+  if (isError || (isFetched && data === undefined))
     return <div>Erro ao carregar informação</div>;
 
   return (
