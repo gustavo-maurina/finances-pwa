@@ -30,6 +30,7 @@ const Card = styled.div<HTMLProps<HTMLDivElement> & { disabled?: boolean }>`
 
   img {
     width: 50px;
+    height: 52px;
     margin-bottom: 0.5rem;
   }
 
