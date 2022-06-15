@@ -30,7 +30,7 @@ const Card = styled.div<HTMLProps<HTMLDivElement> & { disabled?: boolean }>`
 
   img {
     width: 50px;
-    height: 52px;
+    height: auto;
     margin-bottom: 0.5rem;
   }
 
@@ -60,7 +60,12 @@ export const Oportunidades = () => {
           disabled={!data?.newLoanMaxValue}
           onClick={() => changePage("novo-emprestimo/valores")}
         >
-          <img src={require("../../assets/images/newLoan.png")} alt="" />
+          <img
+            width={153}
+            height={159}
+            src={require("../../assets/images/newLoan.png")}
+            alt=""
+          />
           <h3>Novo empréstimo</h3>
 
           <p>{data ? "Até R$ " + data?.newLoanMaxValue : <Skeleton />}</p>
@@ -68,18 +73,33 @@ export const Oportunidades = () => {
       }
 
       <Card disabled={!data?.portabilityMaxValue}>
-        <img src={require("../../assets/images/portability.png")} alt="" />
+        <img
+          width={153}
+          height={159}
+          src={require("../../assets/images/portability.png")}
+          alt=""
+        />
         <h3>Portabilidade</h3>
         <p>{data ? "Até R$ " + data?.portabilityMaxValue : <Skeleton />}</p>
       </Card>
 
       <Card disabled={!data?.refinMaxValue}>
-        <img src={require("../../assets/images/refinancing.png")} alt="" />
+        <img
+          width={153}
+          height={159}
+          src={require("../../assets/images/refinancing.png")}
+          alt=""
+        />
         <h3>Refinanciamento</h3>
       </Card>
 
       <Card disabled={!data?.creditCardMaxValue}>
-        <img src={require("../../assets/images/creditCard.png")} alt="" />
+        <img
+          width={180}
+          height={180}
+          src={require("../../assets/images/creditCard.png")}
+          alt=""
+        />
         <h3>Cartão de crédito consignado</h3>
       </Card>
     </GridOportunidades>

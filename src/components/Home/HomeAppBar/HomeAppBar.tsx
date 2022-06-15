@@ -5,7 +5,7 @@ export const HomeAppBar = () => {
   return (
     <CustomAppBar>
       <div>
-        <Logo />
+        <Logo width={300} height={120} />
       </div>
 
       <MiddleDiv>

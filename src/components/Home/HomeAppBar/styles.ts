@@ -43,10 +43,11 @@ export const MiddleDiv = styled.div`
 `;
 
 export const Logo = styled.img.attrs({
-  src: require("../../../assets/images/tudo-logo.png"),
+  src: require("../../../assets/images/t_logo.png"),
   alt: "logo",
 })`
-  width: 70px;
+  width: auto;
+  height: 27.5%;
 `;
 
 export const ChevronWrapper = styled.div`
